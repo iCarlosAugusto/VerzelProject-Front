@@ -5,6 +5,7 @@ import 'package:verzel_project/components/layout_widget.dart';
 import 'package:verzel_project/components/list_widget.dart';
 import 'package:verzel_project/components/text_widget.dart';
 import 'package:verzel_project/components/textfield_widget.dart';
+import 'package:verzel_project/pages/offer_details_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -35,8 +36,17 @@ class HomePage extends StatelessWidget {
 
           ListWidget(
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (_, index) => const CardOfferWidget(),
-            itemCount: 20
+            itemCount: 20,
+            itemBuilder: (_, index) =>  InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const OfferDetailsPage(),
+                  ),
+                );
+              },
+              child: const CardOfferWidget()
+            ),
           )
         ],
       ),
