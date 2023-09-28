@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:verzel_project/components/text_widget.dart';
 
 class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   AppbarWidget({
@@ -36,7 +35,12 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Visibility(
         visible: showLogo,
-        child: const TextWidget("KAVAK")
+        child: Image.asset(
+          "assets/logo.png",
+          fit: BoxFit.contain,
+          height: 33,
+          width: 76,
+        ),
       ),
       actions: [
         Visibility(
@@ -47,7 +51,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
           visible: showProfile,
           child: GestureDetector(
             onTap: () {
-              print("FOI!");
+              print("Back");
             },
             child: Container(
             width: 24,

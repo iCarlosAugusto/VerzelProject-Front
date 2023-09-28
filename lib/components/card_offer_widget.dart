@@ -7,7 +7,7 @@ class CardOfferWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final imageUrl = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.NDOdMC_KsCMy-cpI6kRK5wHaEW%26pid%3DApi&f=1&ipt=59cc14ce75f86619ad53c463ad4fc736c78b0df5570b88376288a08d4e38098a&ipo=images";
-    return Card(
+    return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

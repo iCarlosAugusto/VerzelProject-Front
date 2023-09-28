@@ -32,7 +32,7 @@ class LayoutWidget extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: BoxConstraints(
                   minHeight: constraints.maxHeight,
-                  maxWidth: constraints.maxWidth,
+                  maxWidth: 720,
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
