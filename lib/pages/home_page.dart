@@ -14,18 +14,25 @@ class HomePage extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return LayoutWidget(
+      appBar: AppbarWidget(
+        showLogo: true,
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TextWidget("TESTE"),
-          Container(
-            color: Colors.blue,
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            child: TextfieldWidget(
-              suffixIcon: const Icon(Icons.search),
-              hintText: "Busque por marca, modelo, ano, cor...",
-            ),
+          TextfieldWidget(
+            suffixIcon: const Icon(Icons.search),
+            hintText: "Busque por marca, modelo, ano, cor...",
           ),
+          
+          TextWidget(
+            "2.159 Resultados",
+            customWeight: FontWeight.w600,
+            color: Colors.grey[600],
+            customFontsize: 14,
+            margin: const EdgeInsets.only(top: 16, bottom: 16),
+          ),
+
           ListWidget(
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (_, index) => const CardOfferWidget(),
