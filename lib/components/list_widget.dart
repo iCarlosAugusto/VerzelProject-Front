@@ -11,7 +11,9 @@ class ListWidget extends StatelessWidget {
     this.customEmpty,
     this.isLoading,
     this.scrollDirection = Axis.vertical,
-    this.physics
+    this.physics,
+    this.scorllController,
+    this.isLoadingMore,
   });
 
   Widget? Function(BuildContext, int) itemBuilder;
@@ -21,6 +23,8 @@ class ListWidget extends StatelessWidget {
   ScrollPhysics? physics;
   int itemCount;
   bool? isLoading;
+  ScrollController? scorllController;
+  bool? isLoadingMore;
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +45,26 @@ class ListWidget extends StatelessWidget {
       const Align(
         child: CircularProgressIndicator()
       )
-      : ListView.separated(
-        shrinkWrap: true,
-        scrollDirection: scrollDirection,
-        physics: physics,
-        itemBuilder: itemBuilder,
-        separatorBuilder: separatorBuilder ?? (_, __) =>  Container(height: 16),
-        itemCount: itemCount
+      : Stack(
+        children: [
+          ListView.separated(
+            controller: scorllController,
+            shrinkWrap: true,
+            scrollDirection: scrollDirection,
+            physics: physics,
+            itemBuilder: itemBuilder,
+            separatorBuilder: separatorBuilder ?? (_, __) =>  Container(height: 16),
+            itemCount: itemCount
+          ),
+          Visibility(
+            visible: isLoadingMore != null && isLoadingMore == true,
+            child: Positioned(
+              bottom: 24,
+              left: MediaQuery.of(context).size.width / 2.5,
+              child: const CircularProgressIndicator()
+            ),
+          )
+        ],
       );
     }
 }

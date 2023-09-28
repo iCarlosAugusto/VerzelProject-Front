@@ -12,6 +12,7 @@ class LayoutWidget extends StatelessWidget {
     this.paddingBottom = 16,
     this.paddingLeft = 20,
     this.paddingRight = 20,
+    this.scrollController,
   }) : super(key: key);
   final double paddingTop;
   final double paddingBottom;
@@ -19,6 +20,7 @@ class LayoutWidget extends StatelessWidget {
   final double paddingRight;
   final AppbarWidget? appBar;
   final Widget child;
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class LayoutWidget extends StatelessWidget {
           builder: (context, constraints) => Scaffold(
             appBar: appBar,
             body: SingleChildScrollView(
+              controller: scrollController,
               child: ConstrainedBox(
                 constraints: BoxConstraints(
                   minHeight: constraints.maxHeight,
