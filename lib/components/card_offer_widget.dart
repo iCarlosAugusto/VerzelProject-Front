@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:verzel_project/components/text_widget.dart';
 
 class CardOfferWidget extends StatelessWidget {
-  const CardOfferWidget({super.key});
+  const CardOfferWidget({
+    super.key,
+    required this.name,
+    required this.brand,
+    required this.model,
+    required this.imageUrl
+  });
+
+  final String name;
+  final String brand;
+  final String model;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +28,12 @@ class CardOfferWidget extends StatelessWidget {
             color: Colors.purple,
           ),
 
-          const TextWidget(
-            "Honda Hr-V",
+          TextWidget(
+            name,
             customWeight: FontWeight.w700,
           ),
-          const TextWidget(
-            "2020 | São Paulo |31.400km",
+          TextWidget(
+            model,
             customFontsize: 13,
           ),
           const Divider(),

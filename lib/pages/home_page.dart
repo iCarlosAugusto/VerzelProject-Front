@@ -7,6 +7,7 @@ import 'package:verzel_project/components/layout_widget.dart';
 import 'package:verzel_project/components/list_widget.dart';
 import 'package:verzel_project/components/text_widget.dart';
 import 'package:verzel_project/components/textfield_widget.dart';
+import 'package:verzel_project/models/offer_model.dart';
 import 'package:verzel_project/pages/home_controller.dart';
 import 'package:verzel_project/pages/offer_details_page.dart';
 
@@ -46,16 +47,31 @@ class HomePage extends StatelessWidget {
               enabled: controller.isLoading,
               child: ListWidget(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.isLoading ? 5 : controller.offers.length,
-                itemBuilder: (_, index) => InkWell(
+                itemCount: controller.offers.length,
+                itemBuilder: (_, index) { 
+                  OfferModel offerItem = controller.offers[index];
+                  return InkWell(
+                    child: CardOfferWidget(
+                      name: offerItem.name,
+                      brand: offerItem.brand,
+                      model: offerItem.model,
+                      imageUrl: offerItem.imageUrl,
+                    ),
                     onTap: () {
+
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const OfferDetailsPage(),
+                          builder: (context) => OfferDetailsPage(
+                            name: offerItem.name,
+                            brand: offerItem.brand,
+                            model: offerItem.model,
+                            imageUrl: offerItem.imageUrl,
+                          ),
                         ),
                       );
                     },
-                    child: const CardOfferWidget()),
+                  );
+                },
               ),
             );
           })

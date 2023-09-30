@@ -25,6 +25,14 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$_fetchOffersAsyncAction =
+      AsyncAction('_HomeControllerBase._fetchOffers', context: context);
+
+  @override
+  Future _fetchOffers() {
+    return _$_fetchOffersAsyncAction.run(() => super._fetchOffers());
+  }
+
   @override
   String toString() {
     return '''

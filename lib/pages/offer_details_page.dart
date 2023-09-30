@@ -4,7 +4,18 @@ import 'package:verzel_project/components/layout_widget.dart';
 import 'package:verzel_project/components/text_widget.dart';
 
 class OfferDetailsPage extends StatelessWidget {
-  const OfferDetailsPage({super.key});
+  const OfferDetailsPage({
+    super.key,
+    required this.name,
+    required this.brand,
+    required this.model,
+    required this.imageUrl
+  });
+
+  final String name;
+  final String brand;
+  final String model;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
