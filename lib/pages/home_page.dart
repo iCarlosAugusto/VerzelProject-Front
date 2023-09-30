@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:verzel_project/components/appbar_widget.dart';
 import 'package:verzel_project/components/button_widget.dart';
 import 'package:verzel_project/components/card_offer_widget.dart';
@@ -41,20 +43,32 @@ class HomePage extends StatelessWidget {
             customFontsize: 14,
             margin: const EdgeInsets.only(top: 16, bottom: 16),
           ),
+          // Shimmer.fromColors(
+          //   baseColor: Colors.grey[400]!,
+          //   highlightColor: Colors.grey[300]!,
+          //   child: Container(
+          //     height: 200,
+          //     width: 200,
+          //     color: Colors.grey,
+          //   ),
+          // ),
           Observer(builder: (_) {
-            return ListWidget(
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
-              isLoadingMore: controller.isLoading,
-              itemBuilder: (_, index) => InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const OfferDetailsPage(),
-                      ),
-                    );
-                  },
-                  child: const CardOfferWidget()),
+            return Skeletonizer(
+              enabled: true,
+              child: ListWidget(
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 5,
+                isLoadingMore: controller.isLoading,
+                itemBuilder: (_, index) => InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const OfferDetailsPage(),
+                        ),
+                      );
+                    },
+                    child: const CardOfferWidget()),
+              ),
             );
           })
         ],
