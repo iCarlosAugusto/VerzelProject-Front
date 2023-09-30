@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verzel_project/pages/home_page.dart';
+import 'package:verzel_project/repositories/offer_repository.dart';
+import 'package:verzel_project/utils/api.dart';
 
 final getIt = GetIt.instance;
 
-void main() {
+setup() {
   getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
+  getIt.registerSingleton<OfferRepository>(OfferRepository());
+  // getIt.registerSingleton<ApiHelper>(ApiHelper());
+  getIt.registerLazySingleton<ApiHelper>(() => ApiHelper()) ;
+}
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setup();
   runApp(const MyApp());
 }
 
