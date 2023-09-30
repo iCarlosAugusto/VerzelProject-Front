@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
               enabled: controller.isLoading,
               child: ListWidget(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.offers.length,
+                itemCount: controller.isLoading ? 5 : controller.offers.length,
                 itemBuilder: (_, index) => InkWell(
                     onTap: () {
                       Navigator.of(context).push(
