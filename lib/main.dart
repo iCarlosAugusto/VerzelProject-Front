@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
 import 'package:verzel_project/pages/home_page.dart';
 
+final getIt = GetIt.instance;
+
 void main() {
+  getIt.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
   runApp(const MyApp());
 }
 
