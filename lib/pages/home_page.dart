@@ -41,14 +41,6 @@ class HomePage extends StatelessWidget {
             customFontsize: 14,
             margin: const EdgeInsets.only(top: 16, bottom: 16),
           ),
-          ButtonWidget(
-            title: "Testar authenticação",
-            onTap: () async {
-              await getIt<FlutterSecureStorage>().write(key: "refreshToken", value: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbSIsInN1YiI6eyJ1c2VybmFtZSI6ImFkbSJ9LCJpYXQiOjE2OTYwMjYzMjUsImV4cCI6MTY5NjYzMTEyNX0.mqWvLNyw1is3lujQex2y5wxjdD4GbTgPn1zxxfX9aBg");
-              var res = await apiHelper.api.get("/offer");
-              print(res);
-            } 
-          ),
           Observer(builder: (_) {
             return ListWidget(
               physics: const NeverScrollableScrollPhysics(),
