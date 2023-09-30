@@ -43,15 +43,6 @@ class HomePage extends StatelessWidget {
             customFontsize: 14,
             margin: const EdgeInsets.only(top: 16, bottom: 16),
           ),
-          // Shimmer.fromColors(
-          //   baseColor: Colors.grey[400]!,
-          //   highlightColor: Colors.grey[300]!,
-          //   child: Container(
-          //     height: 200,
-          //     width: 200,
-          //     color: Colors.grey,
-          //   ),
-          // ),
           Observer(builder: (_) {
             return Skeletonizer(
               enabled: true,
