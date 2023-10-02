@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:verzel_project/components/appbar_widget.dart';
+import 'package:verzel_project/components/button_widget.dart';
 import 'package:verzel_project/components/card_offer_widget.dart';
 import 'package:verzel_project/components/layout_widget.dart';
 import 'package:verzel_project/components/list_widget.dart';
@@ -46,11 +47,13 @@ class HomePage extends StatelessWidget {
             return Skeletonizer(
               enabled: controller.isLoading,
               child: ListWidget(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.offers.length,
-                itemBuilder: (_, index) { 
-                  OfferModel offerItem = controller.offers[index];
-                  return InkWell(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.offers.length,
+              itemBuilder: (_, index) { 
+                OfferModel offerItem = controller.offers[index];
+                return Hero(
+                  tag: offerItem.id,
+                  child: GestureDetector(
                     child: CardOfferWidget(
                       name: offerItem.name,
                       brand: offerItem.brand,
@@ -58,10 +61,10 @@ class HomePage extends StatelessWidget {
                       imageUrl: offerItem.imageUrl,
                     ),
                     onTap: () {
-
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => OfferDetailsPage(
+                            id: offerItem.id,
                             name: offerItem.name,
                             brand: offerItem.brand,
                             model: offerItem.model,
@@ -70,8 +73,9 @@ class HomePage extends StatelessWidget {
                         ),
                       );
                     },
-                  );
-                },
+                  ),
+                );
+              },
               ),
             );
           })
