@@ -17,8 +17,15 @@ abstract class _HomeControllerBase with Store {
   final ObservableList<OfferModel> _offers = ObservableList<OfferModel>();
   ObservableList<OfferModel> get offers => _offers; 
 
+  int _currentPage = 0;
+  
   @observable
   bool isLoading = false;
+
+  @observable
+  bool isLoadingMore = false;
+
+  bool isThereNextPage = true;
   
 
   _HomeControllerBase() {
@@ -27,18 +34,37 @@ abstract class _HomeControllerBase with Store {
   }
 
   @action
-  _fetchOffers() async {
+  Future<void> _fetchOffers() async {
     isLoading = true;
-    dynamic result = await _offerRepository.getAll();
+    dynamic result = await _offerRepository.getAll(_currentPage.toString());
     List<OfferModel> offersResult = List.from(result.map((e) => OfferModel.fromJson(e)));
     _offers.addAll(offersResult);
     await Future.delayed(const Duration(seconds: 2));
     isLoading = false;
   }
 
+  @action
+  Future<void> _fetchMoreOffers() async {
+    isLoadingMore = true;
+    await Future.delayed(const Duration(seconds: 1));
+    try {
+      List results = await _offerRepository.getAll(_currentPage.toString());
+      List<OfferModel> offersResult = List.from(results.map((e) => OfferModel.fromJson(e)));
+      _offers.addAll(offersResult);
+      results.isNotEmpty ? isThereNextPage = true : isThereNextPage = false;
+    } catch (e) {
+      print(e);
+    } finally {
+      isLoadingMore = false;
+    }
+  }
+
   _infiniteScrolling() {
-    if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent && !isLoading) {
-      _fetchOffers();
+    if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent && !isLoadingMore) {
+      if(isThereNextPage) {
+        _currentPage = _currentPage + 3;
+        _fetchMoreOffers();
+      }
     }
   }
 }

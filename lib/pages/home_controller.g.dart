@@ -25,18 +25,43 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  late final _$isLoadingMoreAtom =
+      Atom(name: '_HomeControllerBase.isLoadingMore', context: context);
+
+  @override
+  bool get isLoadingMore {
+    _$isLoadingMoreAtom.reportRead();
+    return super.isLoadingMore;
+  }
+
+  @override
+  set isLoadingMore(bool value) {
+    _$isLoadingMoreAtom.reportWrite(value, super.isLoadingMore, () {
+      super.isLoadingMore = value;
+    });
+  }
+
   late final _$_fetchOffersAsyncAction =
       AsyncAction('_HomeControllerBase._fetchOffers', context: context);
 
   @override
-  Future _fetchOffers() {
+  Future<void> _fetchOffers() {
     return _$_fetchOffersAsyncAction.run(() => super._fetchOffers());
+  }
+
+  late final _$_fetchMoreOffersAsyncAction =
+      AsyncAction('_HomeControllerBase._fetchMoreOffers', context: context);
+
+  @override
+  Future<void> _fetchMoreOffers() {
+    return _$_fetchMoreOffersAsyncAction.run(() => super._fetchMoreOffers());
   }
 
   @override
   String toString() {
     return '''
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+isLoadingMore: ${isLoadingMore}
     ''';
   }
 }

@@ -4,8 +4,8 @@ class OfferRepository {
   
   final ApiHelper _apiHelper = ApiHelper();
 
-  Future<dynamic> getAll() async  {
-    dynamic result = await _apiHelper.api.get("/offer");
+  Future<dynamic> getAll(String page) async  {
+    dynamic result = await _apiHelper.api.get("/offer/$page");
     return result.data;
   }
 }

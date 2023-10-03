@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          showCupertinoModalBottomSheet(
+                    showCupertinoModalBottomSheet(
             context: context,
             builder: (context) => Material(
               child: Container(
@@ -87,6 +87,7 @@ class HomePage extends StatelessWidget {
               return Skeletonizer(
                 enabled: controller.isLoading,
                 child: ListWidget(
+                isLoadingMore: controller.isLoadingMore,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: controller.offers.length,
                 itemBuilder: (_, index) { 
