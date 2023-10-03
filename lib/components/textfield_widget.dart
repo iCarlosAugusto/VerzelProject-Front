@@ -17,7 +17,8 @@ class TextfieldWidget extends StatefulWidget {
       this.initialValue,
       this.maxLines,
       this.minLines,
-      this.maxLength
+      this.maxLength,
+      this.onChanged
     });
 
   final String? label;
@@ -34,6 +35,7 @@ class TextfieldWidget extends StatefulWidget {
   final int? minLines;
   final int? maxLength;
   bool isPasswordField = false;
+  void Function(String)? onChanged;
 
   @override
   State<TextfieldWidget> createState() => _TextfieldWidgetState();
@@ -53,6 +55,7 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
     return Container(
       margin: widget.margin,
       child: TextFormField(
+        onChanged: widget.onChanged,
         initialValue: widget.initialValue,
         inputFormatters: widget.inputFormatters,
         keyboardType: widget.keyboardType,

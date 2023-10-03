@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController controller = HomeController();
-
+    
     return Scaffold(
       appBar: AppbarWidget(
         showLogo: true,
@@ -30,15 +30,27 @@ class HomePage extends StatelessWidget {
             context: context,
             builder: (context) => Material(
               child: Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const TextWidget("Registre um novo veículo"),
                     
-                    TextfieldWidget(),
-                    TextfieldWidget(),
-                    TextfieldWidget(),
-                    TextfieldWidget(),
+                    TextfieldWidget(
+                      hintText: "Nome",
+                      margin: const EdgeInsets.only(top: 16),
+                    ),
+                    TextfieldWidget(
+                      margin: const EdgeInsets.symmetric(vertical: 16),
+                      hintText: "Marca",
+                    ),
+                    TextfieldWidget(
+                      hintText: "Modelo",
+                    ),
+                    TextfieldWidget(
+                      hintText: "Preço",
+                      margin: const EdgeInsets.symmetric(vertical: 16),
+                    ),
               
                   ],
                 ),

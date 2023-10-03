@@ -15,7 +15,7 @@ abstract class _HomeControllerBase with Store {
   final OfferRepository _offerRepository = getIt<OfferRepository>();
 
   final ObservableList<OfferModel> _offers = ObservableList<OfferModel>();
-   ObservableList<OfferModel> get offers => _offers; 
+  ObservableList<OfferModel> get offers => _offers; 
 
   @observable
   bool isLoading = false;
