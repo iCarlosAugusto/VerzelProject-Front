@@ -21,43 +21,44 @@ class OfferDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutWidget(
-        paddingRight: 0,
-        paddingLeft: 0,
-        appBar: AppbarWidget(),
-        child: Column(
-          children: [
-            
-            Hero(
-              tag: id,
-              child: Container(
-                height: 300,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.purple,
-              ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextWidget(
-                      name,
-                      customFontsize: 32,
-                    ),
-                    TextWidget(
-                      "$brand • $model ",
-                      customWeight: FontWeight.w300,
-                      customFontsize: 22,
-                    ),
-                  ],
+    return Scaffold(
+      appBar: AppbarWidget(),
+      body: LayoutWidget(
+          paddingRight: 0,
+          paddingLeft: 0,
+          child: Column(
+            children: [
+              Hero(
+                tag: id,
+                child: Container(
+                  height: 300,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.purple,
                 ),
               ),
-            )
-          ],
-        )
-      );
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextWidget(
+                        name,
+                        customFontsize: 32,
+                      ),
+                      TextWidget(
+                        "$brand • $model ",
+                        customWeight: FontWeight.w300,
+                        customFontsize: 22,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )
+        ),
+    );
   }
 }
