@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:verzel_project/pages/home_page.dart';
+import 'package:verzel_project/pages/login_view.dart';
 import 'package:verzel_project/repositories/offer_repository.dart';
 import 'package:verzel_project/utils/api.dart';
+import 'package:verzel_project/utils/navigator_key.dart';
 
 final getIt = GetIt.instance;
 
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: NavigationService.navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
           primaryColor: const Color(0XFF14CC60),
@@ -100,7 +103,7 @@ class MyApp extends StatelessWidget {
               unselectedIconTheme: IconThemeData(color: Colors.grey)),
           primarySwatch: Colors.blue,
         ),
-      home: const HomePage()
+      home: const LoginPage()
     );
   }
 }
