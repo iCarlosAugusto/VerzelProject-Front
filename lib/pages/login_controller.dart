@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:verzel_project/pages/home_page.dart';
 import 'package:verzel_project/repositories/authentication_repository.dart';
 import 'package:verzel_project/utils/navigator_key.dart';
@@ -27,6 +27,7 @@ abstract class _LoginControllerBase with Store {
   final AuthenticationRepository _authenticationRepository = AuthenticationRepository();
 
   Future authenticate() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       dynamic result = await _authenticationRepository.login(
         _nameFieldController.text,
@@ -35,6 +36,7 @@ abstract class _LoginControllerBase with Store {
       await _storage.write(key: "acessToken", value: result["acessToken"]);
       await _storage.write(key: "refreshToken", value: result["refreshToken"]);
       await _storage.write(key: "statusUser", value: "loggedin");
+      prefs.setBool("isLoggedIn", true);
       Navigator.of(NavigationService.navigatorKey.currentContext!).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const HomePage(),

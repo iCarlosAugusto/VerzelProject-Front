@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:verzel_project/pages/home_page.dart';
 import 'package:verzel_project/pages/login_view.dart';
+import 'package:verzel_project/pages/slapsh_page.dart';
 import 'package:verzel_project/repositories/offer_repository.dart';
 import 'package:verzel_project/utils/api.dart';
 import 'package:verzel_project/utils/navigator_key.dart';
@@ -103,7 +105,7 @@ class MyApp extends StatelessWidget {
               unselectedIconTheme: IconThemeData(color: Colors.grey)),
           primarySwatch: Colors.blue,
         ),
-      home: const LoginPage()
+      home: const SplashPage()
     );
   }
 }
