@@ -7,13 +7,15 @@ class CardOfferWidget extends StatelessWidget {
     required this.name,
     required this.brand,
     required this.model,
-    required this.imageUrl
+    required this.imageUrl,
+    required this.price,
   });
 
   final String name;
   final String brand;
   final String model;
   final String imageUrl;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +29,17 @@ class CardOfferWidget extends StatelessWidget {
             height: 200,
             color: Colors.purple,
           ),
-          TextWidget(
-            name,
-            customWeight: FontWeight.w700,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextWidget(
+                name,
+                customWeight: FontWeight.w700,
+              ),
+              TextWidget(
+                "R\$ $price"
+              )
+            ],
           ),
           TextWidget(
             model,

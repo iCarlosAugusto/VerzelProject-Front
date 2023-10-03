@@ -4,8 +4,9 @@ class OfferModel {
   String brand;
   String model;
   String imageUrl;
+  int price;
 
-  OfferModel(this.id, this.name, this.brand, this.imageUrl, this.model);
+  OfferModel(this.id, this.name, this.brand, this.imageUrl, this.model, this.price);
 
   factory OfferModel.fromJson(Map<String, dynamic> json) {
     return OfferModel(
@@ -13,7 +14,8 @@ class OfferModel {
       json['name'] as String,
       json['brand'] as String,
       json['model'] as String,
-      json['imageUrl'] as String
+      json['imageUrl'] as String,
+      json['price'] as int
     );
   }
   
@@ -24,6 +26,7 @@ class OfferModel {
       'brand': brand,
       'model': model,
       'imageUrl': imageUrl,
+      'price': price,
     };
   }
 }

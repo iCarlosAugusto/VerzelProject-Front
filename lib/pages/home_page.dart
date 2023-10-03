@@ -100,6 +100,7 @@ class HomePage extends StatelessWidget {
                         brand: offerItem.brand,
                         model: offerItem.model,
                         imageUrl: offerItem.imageUrl,
+                        price: offerItem.price,
                       ),
                       onTap: () {
                         Navigator.of(context).push(
