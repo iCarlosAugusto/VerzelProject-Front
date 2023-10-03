@@ -13,6 +13,7 @@ class LayoutWidget extends StatelessWidget {
     this.paddingLeft = 20,
     this.paddingRight = 20,
     this.scrollController,
+    this.floatingActionButton,
   }) : super(key: key);
   final double paddingTop;
   final double paddingBottom;
@@ -21,6 +22,7 @@ class LayoutWidget extends StatelessWidget {
   final AppbarWidget? appBar;
   final Widget child;
   final ScrollController? scrollController;
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +30,7 @@ class LayoutWidget extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: SafeArea(
         child: LayoutBuilder(
-          builder: (context, constraints) => Scaffold(
-            appBar: appBar,
-            body: SingleChildScrollView(
+          builder: (context, constraints) => SingleChildScrollView(
               controller: scrollController,
               child: ConstrainedBox(
                 constraints: BoxConstraints(
@@ -48,7 +48,6 @@ class LayoutWidget extends StatelessWidget {
                 ),
               ),
             ),
-          ),
         ),
       ),
     );
